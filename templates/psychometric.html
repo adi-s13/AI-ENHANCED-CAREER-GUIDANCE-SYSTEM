@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Psychometric Test — AI Career Guide</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='psychometric.css') }}"
+    />
+    <style>
+      /* small tweaks for wizard layout (kept inline so you don't need extra file) */
+      .wizard {
+        max-width: 880px;
+        margin: 16px auto;
+      }
+      .question-block {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      .step-title {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #06b6d4;
+      }
+      .wizard-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      .nav-btn {
+        background: #0ea5a4;
+        border: none;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .small-muted {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-top: 6px;
+      }
+      .summary {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 12px;
+      }
+      .puzzle {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .correct {
+        color: #22c55e;
+        font-weight: 700;
+      }
+      .wrong {
+        color: #ef4444;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container wizard">
+      <h1>Psychometric Assessment (25 questions + 3 puzzles)</h1>
+      <p class="subtitle">
+        Answer honestly. Each Likert question: 1 (Strongly Disagree) — 5
+        (Strongly Agree). The short puzzles test reasoning and boost the
+        analytical/logical profile.
+      </p>
+
+      <form id="psychWizard">
+        <!-- Progress bar -->
+        <div class="progress-wrapper" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <!-- Steps (5 steps, 5 questions each) -->
+        <div id="steps">
+          <!-- Steps will be injected by JS -->
+        </div>
+
+        <!-- Final puzzles step -->
+        <div class="step" id="puzzles-step" style="display: none">
+          <h2 class="step-title">Cognitive Puzzles (3)</h2>
+          <p class="small-muted">
+            These are short reasoning questions — they are auto-graded and will
+            slightly modify your trait scores.
+          </p>
+
+          <div id="puzzles-container">
+            <div class="puzzle" data-id="p1">
+              <p>
+                <strong>Puzzle 1:</strong> If every Zim is a Zom, and some Zom
+                are Zon, which statement is definitely true?
+              </p>
+              <label
+                ><input type="radio" name="p1" value="a" /> All Zim are
+                Zon</label
+              ><br />
+              <label
+                ><input type="radio" name="p1" value="b" /> Some Zim are
+                Zon</label
+              ><br />
+              <label
+                ><input type="radio" name="p1" value="c" /> No Zim are
+                Zon</label
+              ><br />
+              <label
+                ><input type="radio" name="p1" value="d" /> Can't
+                determine</label
+              >
+            </div>
+
+            <div class="puzzle" data-id="p2">
+              <p>
+                <strong>Puzzle 2:</strong> Sequence: 2, 6, 12, 20, ? — What
+                number follows?
+              </p>
+              <label><input type="radio" name="p2" value="a" /> 28</label><br />
+              <label><input type="radio" name="p2" value="b" /> 30</label><br />
+              <label><input type="radio" name="p2" value="c" /> 26</label><br />
+              <label><input type="radio" name="p2" value="d" /> 24</label>
+            </div>
+
+            <div class="puzzle" data-id="p3">
+              <p>
+                <strong>Puzzle 3:</strong> Which one of these words is the odd
+                one out?
+              </p>
+              <label><input type="radio" name="p3" value="a" /> Apple</label
+              ><br />
+              <label><input type="radio" name="p3" value="b" /> Orange</label
+              ><br />
+              <label><input type="radio" name="p3" value="c" /> Carrot</label
+              ><br />
+              <label><input type="radio" name="p3" value="d" /> Banana</label>
+            </div>
+          </div>
+
+          <div class="summary" id="puzzle-summary" style="display: none"></div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="wizard-nav">
+          <button
+            type="button"
+            class="nav-btn"
+            id="prevBtn"
+            style="display: none"
+          >
+            ◀ Previous
+          </button>
+          <div style="flex: 1"></div>
+          <button type="button" class="nav-btn" id="nextBtn">Next ▶</button>
+          <button
+            type="submit"
+            class="nav-btn"
+            id="submitBtn"
+            style="display: none; margin-left: 10px"
+          >
+            Submit & Save
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='psychometric.js') }}"></script>
+  </body>
+</html>

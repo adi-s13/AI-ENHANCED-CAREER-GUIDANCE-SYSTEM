@@ -1,0 +1,295 @@
+<!-- templates/dashboard.html (updated) -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Career Guide - Student Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Dashboard CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='dashboard.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="nav-left">
+          <button class="sidebar-toggle" id="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+
+          <div class="nav-logo">
+            <i class="fas fa-brain"></i>
+            <span>AI Career Guide</span>
+          </div>
+        </div>
+
+        <ul class="nav-menu">
+          <li>
+            <a href="#dashboard" class="nav-link active"
+              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#career-paths" class="nav-link"
+              ><i class="fas fa-route"></i> Career Paths</a
+            >
+          </li>
+          <li>
+            <a href="#marks-section" class="nav-link"
+              ><i class="fas fa-school"></i> Marks</a
+            >
+          </li>
+          <li>
+            <a href="#profile" class="nav-link"
+              ><i class="fas fa-user"></i> Profile</a
+            >
+          </li>
+        </ul>
+
+        <div class="nav-right">
+          <div class="user-menu">
+            <div class="user-avatar"><i class="fas fa-user"></i></div>
+            <div class="user-info">
+              <span class="user-name">{{ user_name }}</span>
+              <span class="user-role">Student</span>
+            </div>
+            <button class="logout-btn" id="logout-btn">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <i class="fas fa-brain"></i> <span>AI Guide</span>
+        </div>
+
+        <button class="sidebar-close" id="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#dashboard" class="sidebar-link active"
+              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#career-paths" class="sidebar-link"
+              ><i class="fas fa-route"></i> Career Paths</a
+            >
+          </li>
+          <li>
+            <a href="#marks-section" class="sidebar-link"
+              ><i class="fas fa-school"></i> Enter Marks</a
+            >
+          </li>
+          <li>
+            <a href="#settings" class="sidebar-link"
+              ><i class="fas fa-cog"></i> Settings</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="main-content">
+      <!-- WELCOME HEADER -->
+      <section class="welcome-banner">
+        <div class="banner-content">
+          <div class="welcome-text">
+            <h1 class="welcome-title">Welcome, {{ user_name }} 👋</h1>
+            <p class="welcome-subtitle">Your personalized guidance dashboard</p>
+          </div>
+
+          <div class="banner-stats">
+            <div class="stat-card">
+              <i class="fas fa-eye"></i>
+              <div class="stat-info">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Career Paths</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <i class="fas fa-clock"></i>
+              <div class="stat-info">
+                <span class="stat-number">85%</span>
+                <span class="stat-label">Progress</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI CAREER RECOMMENDATIONS -->
+      <section
+        class="dashboard-section career-recommendations"
+        id="career-paths"
+      >
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-lightbulb"></i> AI Career Recommendations
+          </h2>
+          <p class="section-subtitle">
+            AI-powered suggestions based on your psychometric profile + marks
+          </p>
+        </div>
+
+        <div class="career-grid" id="recommendations-container">
+          <!-- Recommendations inserted by JS -->
+        </div>
+
+        <div style="margin-top: 1rem">
+          <button class="career-btn" id="run-recommend-btn">
+            Run AI Recommendations
+          </button>
+
+          <!-- Redirects to the full psychometric wizard page (multi-step) -->
+          <a
+            href="/psychometric-test"
+            class="career-btn"
+            id="open-psychometric-btn"
+            style="
+              margin-left: 10px;
+              text-decoration: none;
+              display: inline-block;
+              text-align: center;
+            "
+          >
+            Take Psychometric Test
+          </a>
+
+          <button
+            class="career-btn"
+            id="open-report-btn"
+            style="margin-left: 10px"
+          >
+            View Full AI Report
+          </button>
+        </div>
+      </section>
+
+      <!-- MARKS INPUT SECTION -->
+      <section class="dashboard-section" id="marks-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-school"></i> Academic Marks
+          </h2>
+          <p class="section-subtitle">
+            Your marks help the AI personalize your career suggestions
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap">
+          <!-- Class 10 -->
+          <div style="min-width: 280px; flex: 1">
+            <h4>10th Grade Subjects</h4>
+
+            <label>Mathematics <input type="number" id="m10-math" /></label>
+            <label>Science <input type="number" id="m10-science" /></label>
+            <label
+              >Social Studies <input type="number" id="m10-social"
+            /></label>
+            <label>English <input type="number" id="m10-english" /></label>
+          </div>
+
+          <!-- Class 12 -->
+          <div style="min-width: 280px; flex: 1">
+            <h4>12th Grade Subjects</h4>
+
+            <label>Mathematics <input type="number" id="m12-math" /></label>
+            <label>Physics <input type="number" id="m12-physics" /></label>
+            <label>Chemistry <input type="number" id="m12-chem" /></label>
+            <label>Biology <input type="number" id="m12-bio" /></label>
+          </div>
+        </div>
+
+        <button class="career-btn" id="save-marks-btn" style="margin-top: 15px">
+          Save Marks
+        </button>
+      </section>
+
+      <!-- PROGRESS TRACKER -->
+      <section class="dashboard-section progress-tracker">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-chart-line"></i> Your Progress
+          </h2>
+          <p class="section-subtitle">
+            Track how far you’ve explored your career roadmap
+          </p>
+        </div>
+
+        <div class="progress-overview">
+          <div class="progress-circle">
+            <svg width="120" height="120">
+              <circle
+                class="progress-ring-bg"
+                cx="60"
+                cy="60"
+                r="54"
+                stroke-width="8"
+              ></circle>
+
+              <circle
+                class="progress-ring-fill"
+                cx="60"
+                cy="60"
+                r="54"
+                stroke-width="8"
+                stroke-dasharray="339.292"
+                stroke-dashoffset="80"
+              ></circle>
+            </svg>
+
+            <div class="progress-text">
+              <span class="progress-percentage">85%</span>
+              <span class="progress-label">Complete</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- tiny hidden stub so existing dashboard.js references don't break -->
+    <div id="psychometric-modal" style="display: none"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Dashboard JS -->
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+  </body>
+</html>

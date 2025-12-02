@@ -1,0 +1,102 @@
+body {
+  background: #0f172a;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  padding: 20px;
+}
+
+.report-container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.report-title {
+  text-align: center;
+  font-size: 2.4rem;
+  color: #38bdf8;
+  margin-bottom: 5px;
+}
+
+.report-subtitle {
+  text-align: center;
+  color: #cbd5e1;
+  margin-bottom: 25px;
+}
+
+.report-section {
+  margin-top: 30px;
+}
+
+.report-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #06b6d4;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card h3 {
+  color: #38bdf8;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+}
+
+.roadmap-step {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-left: 3px solid #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border-radius: 6px;
+}
+
+.download-buttons {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.download-btn,
+.back-btn {
+  background: #06b6d4;
+  padding: 10px 16px;
+  margin: 0 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.back-btn {
+  background: #475569;
+}

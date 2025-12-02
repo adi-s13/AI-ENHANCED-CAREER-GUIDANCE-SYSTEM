@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Your AI Career Report</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        background: #0f172a;
+        color: #fff;
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 85%;
+        margin: 30px auto;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 12px;
+        backdrop-filter: blur(15px);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 2rem;
+        color: #38bdf8;
+      }
+
+      .section {
+        margin-bottom: 35px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #334155;
+      }
+
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      .section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+        color: #38bdf8;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.07);
+        padding: 18px;
+        margin: 12px 0;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .career-card h3 {
+        margin: 0 0 4px;
+        color: #fff;
+      }
+
+      .skills {
+        margin-top: 6px;
+        font-size: 0.9rem;
+        color: #cbd5e1;
+      }
+
+      .back-btn {
+        display: block;
+        width: 200px;
+        margin: 25px auto;
+        text-align: center;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: linear-gradient(90deg, #06b6d4, #3b82f6);
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .back-btn:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Your AI Career Guidance Report</h1>
+
+      <!-- PERSONALITY SECTION -->
+      <div class="section">
+        <h2><i class="fa-solid fa-user"></i> Personality Overview</h2>
+        <div id="personalityBox" class="card"></div>
+      </div>
+
+      <!-- COGNITIVE SKILLS -->
+      <div class="section">
+        <h2><i class="fa-solid fa-brain"></i> Cognitive Ability Summary</h2>
+        <div id="cognitiveBox" class="card"></div>
+      </div>
+
+      <!-- ACADEMIC STRENGTHS -->
+      <div class="section">
+        <h2><i class="fa-solid fa-book"></i> Academic Strength Analysis</h2>
+        <div id="academicBox" class="card"></div>
+      </div>
+
+      <!-- CAREER RECOMMENDATIONS -->
+      <div class="section">
+        <h2>
+          <i class="fa-solid fa-lightbulb"></i> Top Career Recommendations
+        </h2>
+        <div id="careerBox"></div>
+      </div>
+
+      <!-- SKILL ROADMAP -->
+      <div class="section">
+        <h2><i class="fa-solid fa-road"></i> Suggested Skill Roadmap</h2>
+        <div id="roadmapBox" class="card"></div>
+      </div>
+
+      <a class="back-btn" href="/dashboard"
+        ><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a
+      >
+    </div>
+
+    <script>
+      async function loadReport() {
+        try {
+          const res = await fetch("/api/get_report");
+          const data = await res.json();
+
+          if (!data.success) {
+            alert("Failed to load report");
+            return;
+          }
+
+          // PERSONALITY
+          document.getElementById("personalityBox").innerHTML = `
+          <strong>Type:</strong> ${data.personality.type}<br>
+          <strong>Traits:</strong> ${data.personality.description}
+        `;
+
+          // COGNITIVE
+          document.getElementById("cognitiveBox").innerHTML = `
+          <strong>Logical Reasoning:</strong> ${data.cognitive.logical}<br>
+          <strong>Analytical Ability:</strong> ${data.cognitive.analytical}<br>
+          <strong>Creative Thinking:</strong> ${data.cognitive.creative}
+        `;
+
+          // ACADEMIC
+          document.getElementById("academicBox").innerHTML = `
+          <strong>10th Strengths:</strong> ${data.academic["10th"]}<br>
+          <strong>12th Strengths:</strong> ${data.academic["12th"]}
+        `;
+
+          // CAREER RECOMMENDATIONS
+          const careerBox = document.getElementById("careerBox");
+          careerBox.innerHTML = "";
+
+          data.careers.forEach((c) => {
+            careerBox.innerHTML += `
+            <div class="card career-card">
+              <h3>${c.career}</h3>
+              <p>${c.description}</p>
+              <div class="skills"><strong>Skills:</strong> ${c.skills.join(
+                ", "
+              )}</div>
+              <div class="skills"><strong>Path:</strong> ${c.path}</div>
+            </div>
+          `;
+          });
+
+          // ROADMAP
+          document.getElementById("roadmapBox").innerHTML = data.roadmap;
+        } catch (err) {
+          console.error(err);
+          alert("Error loading report");
+        }
+      }
+
+      loadReport();
+    </script>
+  </body>
+</html>

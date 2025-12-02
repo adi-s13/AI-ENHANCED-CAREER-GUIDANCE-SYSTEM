@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Your AI Career Guidance Report</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='results.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">Your AI Career Guidance Report</h1>
+
+      <!-- Profile -->
+      <section>
+        <h2>👤 Profile</h2>
+        <div id="profile-box" class="section-box"></div>
+      </section>
+
+      <!-- Personality -->
+      <section>
+        <h2>🧠 Personality Overview</h2>
+        <div id="personality-box" class="section-box"></div>
+      </section>
+
+      <!-- Cognitive Ability -->
+      <section>
+        <h2>🔍 Cognitive Ability Summary</h2>
+        <div id="cognitive-box" class="section-box"></div>
+      </section>
+
+      <!-- Psychometric Details -->
+      <section>
+        <h2>📘 Psychometric Analysis</h2>
+        <div id="psychometric-box" class="section-box"></div>
+      </section>
+
+      <!-- Marks -->
+      <section>
+        <h2>📚 Academic Strengths</h2>
+        <div id="marks-box" class="section-box"></div>
+      </section>
+
+      <!-- Careers -->
+      <section>
+        <h2>🎯 Top Career Recommendations</h2>
+        <div id="career-box" class="section-box"></div>
+      </section>
+
+      <!-- Roadmap -->
+      <section>
+        <h2>🛣 Suggested Skill Roadmap</h2>
+        <div id="roadmap-box" class="section-box"></div>
+      </section>
+
+      <button onclick="downloadPDF()" class="download-btn">Download PDF</button>
+    </div>
+
+    <!-- Load report.js -->
+    <script src="{{ url_for('static', filename='report.js') }}"></script>
+  </body>
+</html>

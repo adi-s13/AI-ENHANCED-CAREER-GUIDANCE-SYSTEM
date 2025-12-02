@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Enter Marks — AI Career Guide</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='landing.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container" style="padding: 30px">
+      <h1>Enter Your Marks</h1>
+
+      <form id="marksForm">
+        <h3>Class 10 (percent)</h3>
+        <input
+          type="number"
+          id="maths"
+          placeholder="Maths"
+          min="0"
+          max="100"
+          required
+        />
+        <input
+          type="number"
+          id="science"
+          placeholder="Science"
+          min="0"
+          max="100"
+          required
+        />
+        <input
+          type="number"
+          id="english"
+          placeholder="English"
+          min="0"
+          max="100"
+          required
+        />
+        <input
+          type="number"
+          id="sst"
+          placeholder="Social Studies"
+          min="0"
+          max="100"
+          required
+        />
+
+        <h3>Class 12 (optional)</h3>
+        <input
+          type="number"
+          id="physics"
+          placeholder="Physics"
+          min="0"
+          max="100"
+        />
+        <input
+          type="number"
+          id="chemistry"
+          placeholder="Chemistry"
+          min="0"
+          max="100"
+        />
+        <input
+          type="number"
+          id="biology"
+          placeholder="Biology / CS / Electronics"
+          min="0"
+          max="100"
+        />
+
+        <button type="submit" class="submit-btn">
+          Save & Get Recommendations
+        </button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("marksForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const subjectScores = {
+            "10th": {
+              math: parseInt(document.getElementById("maths").value || 0),
+              science: parseInt(document.getElementById("science").value || 0),
+              english: parseInt(document.getElementById("english").value || 0),
+              social: parseInt(document.getElementById("sst").value || 0),
+            },
+            "12th": {
+              physics: parseInt(document.getElementById("physics").value || 0),
+              chemistry: parseInt(
+                document.getElementById("chemistry").value || 0
+              ),
+              bio: parseInt(document.getElementById("biology").value || 0),
+            },
+          };
+
+          try {
+            const res = await fetch("/api/save_marks", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ marks: subjectScores }),
+            });
+            const j = await res.json();
+
+            if (!j.success) {
+              alert("Failed to save marks");
+              return;
+            }
+
+            // now trigger recommendation generation
+            const recRes = await fetch("/api/generate_recommendations", {
+              method: "POST",
+            });
+            const recJson = await recRes.json();
+            if (recJson.success) {
+              // save results to localStorage and redirect to results if you have a results page
+              localStorage.setItem(
+                "careerResults",
+                JSON.stringify(recJson.recommendations)
+              );
+              window.location.href = "/results";
+            } else {
+              alert("Recommendations failed");
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Server error");
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Enhanced Career Guidance System - Shape Your Future</title>
+    <meta
+      name="description"
+      content="Personalized career guidance powered by artificial intelligence. Discover your perfect career path with AI-driven insights."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='landing.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <i class="fas fa-brain"></i>
+          <span>AI Career Guide</span>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#stream-selector" class="nav-link">Streams</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-bg">
+        <div class="gradient-wave wave-1"></div>
+        <div class="gradient-wave wave-2"></div>
+        <div class="gradient-wave wave-3"></div>
+        <div class="particles-container">
+          <div class="particle particle-1"></div>
+          <div class="particle particle-2"></div>
+          <div class="particle particle-3"></div>
+          <div class="particle particle-4"></div>
+          <div class="particle particle-5"></div>
+          <div class="particle particle-6"></div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Shape Your Future with AI <span class="highlight">🚀</span>
+          </h1>
+          <p class="hero-subtitle">
+            Personalized career guidance powered by artificial intelligence.
+          </p>
+          <div class="hero-cta">
+            <button class="cta-button" id="cta-button">
+              <span class="cta-text">Get Started</span>
+              <i class="fas fa-arrow-right cta-icon"></i>
+              <div class="cta-glow"></div>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="floating-card card-1">
+            <i class="fas fa-chart-line"></i>
+            <span>Analytics</span>
+          </div>
+          <div class="floating-card card-2">
+            <i class="fas fa-lightbulb"></i>
+            <span>Insights</span>
+          </div>
+          <div class="floating-card card-3">
+            <i class="fas fa-target"></i>
+            <span>Goals</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Why Choose AI Career Guidance?</h2>
+          <p class="section-subtitle">
+            Experience the future of career planning with cutting-edge AI
+            technology
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-route"></i>
+            </div>
+            <h3 class="feature-title">Personalized Career Paths</h3>
+            <p class="feature-description">
+              Get tailored career recommendations based on your skills,
+              interests, and market trends.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="feature-title">AI-Powered Insights</h3>
+            <p class="feature-description">
+              Advanced algorithms analyze industry data to provide accurate
+              career predictions.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="feature-title">Educational Guidance</h3>
+            <p class="feature-description">
+              Discover the best courses, certifications, and learning paths for
+              your goals.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3 class="feature-title">Market Analytics</h3>
+            <p class="feature-description">
+              Real-time market analysis helps you make informed decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stream Selector Section -->
+    <section class="stream-selector section" id="stream-selector">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Choose Your Academic Stream</h2>
+          <p class="section-subtitle">
+            Select your current academic level to get personalized career
+            guidance
+          </p>
+        </div>
+
+        <div class="stream-options">
+          <div class="stream-card" data-stream="class10">
+            <i class="fas fa-school"></i>
+            <h3>After Class 10th</h3>
+            <p>Explore career options after secondary education</p>
+            <button onclick="showStreamInfo('class10')">Explore Options</button>
+          </div>
+
+          <div class="stream-card" data-stream="class12">
+            <i class="fas fa-university"></i>
+            <h3>After Class 12th</h3>
+            <p>Discover higher education and career pathways</p>
+            <button onclick="showStreamInfo('class12')">Explore Options</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">What Students Say</h2>
+          <p class="section-subtitle">
+            Real stories from students who transformed their careers with AI
+            guidance
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p>
+              "The AI guidance helped me discover my passion for data science!"
+            </p>
+            <h4>- Sarah Johnson</h4>
+          </div>
+
+          <div class="testimonial-card">
+            <p>
+              "I found the right engineering stream and landed my dream
+              internship!"
+            </p>
+            <h4>- Michael Chen</h4>
+          </div>
+
+          <div class="testimonial-card">
+            <p>
+              "The market analytics gave me confidence in my career choice."
+            </p>
+            <h4>- Emily Rodriguez</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <p>&copy; 2024 AI Career Guide. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Stream Info Modal -->
+    <div class="modal" id="stream-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-title">Career Options</h3>
+          <button class="modal-close" onclick="closeStreamInfo()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='landing.js') }}"></script>
+  </body>
+</html>

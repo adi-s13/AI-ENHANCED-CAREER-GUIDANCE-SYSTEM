@@ -1,0 +1,21 @@
+# ------ ENVIRONMENT VARIABLES ------
+.env
+
+# ------ PYTHON CACHE ------
+__pycache__/
+*.pyc
+
+# ------ MODEL CACHE ------
+model/__pycache__/
+
+# ------ VIRTUAL ENVIRONMENTS ------
+venv/
+env/
+
+# ------ EDITOR FILES ------
+.vscode/
+.idea/
+
+# ------ OS FILES ------
+.DS_Store
+Thumbs.db
