@@ -19,3 +19,11 @@ env/
 # ------ OS FILES ------
 .DS_Store
 Thumbs.db
+
+# ------ DOCUMENTS (IGNORE ALL PDF / PPTX / DOCX) ------
+*.pdf
+*.pptx
+*.docx
+
+# Ignore the folder where documents are stored
+CSE_188 Files/
